@@ -1,0 +1,33 @@
+<%-- 
+    Document   : edit
+    Created on : 16/09/2020, 06:57:00 PM
+    Author     : JorgeVeliz
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" Content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <div>
+            <%
+                PersonaDAO nuevaPersonaDao = newPersonaDAO();
+                int codPersona = Integer.parseInt((String)request.getAttribute("codPer"));
+                Persona nuevaPersona = (Persona)nuevaPersonaDao.list(codPersona);
+            %>
+
+            <h1>Modificar Persona</h1>
+            <form action="Controlador">
+                DPI:<br>
+                <input type="text" name="txtDPI" value="<%=nuevaPersona.getDPI() %>"><br><br>
+                Nombres: <br>
+                <input type="text" name="txtNombre" value="<%=nuevaPersona.getNombrePersona() %>"><br><br>
+                <input type="hidden" name="txtCodigoPersona" value="<%=nuevaPersona.getCodigoPersona() %>"><br><br>
+                <input type="submit" name="accion" value="Actualizar"><br>
+            </form>
+        </div>
+    </body>
+</html>
